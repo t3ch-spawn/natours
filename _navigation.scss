@@ -1,0 +1,239 @@
+.navigation {
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    background-color: $color-white;
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    top: 6rem;
+    right: 6rem;
+    border-radius: 50%;
+    z-index: 30;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    @include respond(tab-port) {
+      top: 3rem;
+      right: 3rem;
+      height: 5rem;
+      width: 5rem;
+    }
+    @include respond(phone) {
+      top: 2.5rem;
+      right: 2.5rem;
+    }
+  }
+
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 6.5rem;
+    right: 6.5rem;
+    background-image: radial-gradient(
+      rgba($color-primary-light, 0.9),
+      rgba($color-primary-dark, 0.9)
+    );
+    z-index: 20;
+    transition: 0.8s cubic-bezier(0.83, 0, 0.17, 1);
+
+    @include respond(tab-port) {
+      top: 3.5rem;
+      right: 3.5rem;
+      height: 4rem;
+      width: 4rem;
+    }
+
+    @include respond(phone) {
+      top: 3rem;
+      right: 3rem;
+    }
+
+    &.active {
+      transform: scale(1);
+    }
+  }
+
+  &__nav {
+    height: 100vh;
+    width: 0%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(0.73, -0.66, 0.28, 1.63);
+  }
+
+  &__list {
+    list-style: none;
+    text-align: center;
+  }
+
+  &__item {
+    margin: 1rem;
+    cursor: pointer;
+    overflow: hidden;
+    width: fit-content;
+    perspective: 90rem;
+    backface-visibility: hidden;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      font-weight: 300;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+      backface-visibility: hidden;
+
+      // styles for box animation
+      position: relative;
+      width: 35rem;
+      height: 7rem;
+
+      // span element housing the 2 faces of the "box"
+      & > div {
+        position: absolute;
+        transform: rotateX(-90deg);
+        width: 35rem;
+        height: 7rem;
+        transform-style: preserve-3d;
+        transition: 0.3s ease-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      & > div > span {
+        display: block;
+        position: absolute;
+        backface-visibility: hidden;
+        padding: 1rem 2rem;
+
+        // styles responsible for the white background animation across nav-items
+        background-repeat: no-repeat;
+        background-image: linear-gradient(
+          120deg,
+          transparent 50%,
+          $color-white 50%
+        );
+        background-size: 220%;
+        transition: 0.4s ease-out;
+      }
+
+      // span element housing number
+      span span {
+        margin-right: 1rem;
+      }
+    }
+
+    &--front {
+      transform: translateZ(3rem);
+    }
+    &--back {
+      transform: rotateX(90deg) translateZ(3rem);
+    }
+  }
+
+  // hover states responsible for animations
+  // They were not targeted individually to prevent jittering
+  &__item:hover &__link > div {
+    // color: $color-primary;
+    transform: rotateX(0deg);
+  }
+
+  &__item:hover &__link--front {
+    background-position: 100%;
+    transition-delay: 0.25s;
+    color: $color-primary;
+  }
+
+  // FUNCTIONALITY OF HAMBURGER MENU
+  &__checkbox:checked ~ &__background {
+    transform: scale(90);
+  }
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    pointer-events: all;
+    width: 100%;
+  }
+
+  // ICON (three dashes of the hamburger menu)
+  &__icon {
+    position: relative;
+
+    &,
+    &::after,
+    &::before {
+      width: 3rem;
+      height: 2px;
+      background-color: $color-gray-dark-2;
+      display: inline-block;
+      transition: 0.2s ease-out;
+
+      @include respond(tab-port) {
+        width: 2.5rem;
+      }
+    }
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+    }
+
+    &::before {
+      top: -0.8rem;
+    }
+    &::after {
+      top: 0.8rem;
+    }
+  }
+
+  &__button:hover &__icon::before {
+    top: -1rem;
+  }
+
+  &__button:hover &__icon::after {
+    top: 1rem;
+  }
+
+  // Functionality changing the hamburger to an X
+  &__checkbox:checked ~ &__button &__icon {
+    background-color: transparent;
+
+    &::before {
+      transform: rotate(135deg);
+      top: 0;
+    }
+
+    &::after {
+      transform: rotate(-135deg);
+      top: 0;
+    }
+  }
+
+  &__background.active {
+    transform: scale(1);
+  }
+
+  &__link:focus &__check {
+  }
+}
