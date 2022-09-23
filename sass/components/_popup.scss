@@ -1,0 +1,107 @@
+.popup {
+  position: fixed;
+  background-color: $color-white;
+  // top: 50%;
+  // left: 50%;
+  top: 0;
+  left: 0;
+  // transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  z-index: 40;
+  background-color: rgba($color-black, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease-out;
+
+  &__content {
+    @include absCenter;
+    width: 75%;
+    background-color: $color-white;
+    box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+    border-radius: 5px;
+    display: flex;
+    overflow: hidden;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+    transition: 0.3s ease-out;
+    align-items: center;
+
+    @include respond(phone) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__left {
+    width: 33.333333%;
+
+    @include respond(phone) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__right {
+    width: 66.666667%;
+    height: 100%;
+    padding: 3rem 5rem;
+
+    @include respond(phone) {
+      width: 100%;
+      position: static;
+      padding: 1.5rem 2.5rem;
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+    // creating columns of text
+    column-count: 2;
+    column-gap: 3rem;
+    column-rule: 1px solid $color-gray-dark-2;
+    // hyphenation
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  // Functionality of "book now" button on card
+  &:target {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &:target &__content {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition-delay: 0.2s;
+  }
+
+  // funtionality of close button
+  &__close {
+    &:link,
+    &:visited {
+      position: absolute;
+      right: 2rem;
+      top: 2rem;
+      font-size: 3rem;
+      text-decoration: none;
+      color: $color-gray-dark;
+      transition: 0.2s ease-out;
+      line-height: 0.5;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}

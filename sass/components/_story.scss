@@ -1,0 +1,95 @@
+.story {
+  width: 90%;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  border-radius: 3px;
+  padding: 6rem;
+  background-color: rgba($color-white, 0.8);
+  font-size: $default-font-size;
+  padding-left: 9rem;
+  transform: skewX(-12deg);
+  margin: 0 auto;
+
+  @include respond(tab-port) {
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+
+  @include respond(phone) {
+    transform: skewX(0deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem;
+    width: 80%;
+  }
+
+  @include respond(small-phone) {
+    width: 100%;
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    // border-radius: 50%;
+    float: left;
+    overflow: hidden;
+    // -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    // shape-outside: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+    clip-path: circle(50% at 50% 50%);
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+
+    @include respond(phone) {
+      transform: translateX(-3rem) skewX(0deg);
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      margin-bottom: 2rem;
+      text-align: center;
+      shape-outside: none;
+      margin-left: 3rem;
+    }
+
+    img {
+      height: 100%;
+      transform: translateX(-4rem) scale(1.4);
+      transition: all 0.5s;
+      backface-visibility: hidden;
+    }
+  }
+
+  &__text {
+    transform: skewX(12deg);
+
+    @include respond(phone) {
+      transform: skewX(0deg);
+      text-align: left;
+    }
+  }
+
+  &__caption {
+    text-transform: uppercase;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    font-size: 1.8rem;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__shape img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(70%);
+  }
+}

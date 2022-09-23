@@ -1,0 +1,234 @@
+.section-about {
+  background-color: $color-gray-light-1;
+  margin-top: -20rem;
+  padding: 25rem 3rem;
+
+  &--typography {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 10rem;
+    padding: 20px;
+    max-width: 114rem;
+    margin: 0 auto;
+    height: fit-content;
+
+    &__text {
+      margin-right: $gutter-horizontal;
+      width: calc((100% - #{$gutter-horizontal}) / 2);
+    }
+
+    &__pics {
+      width: calc((100% - #{$gutter-horizontal}) / 2);
+    }
+
+    @include flex-column;
+
+    @include respond(tab-port) {
+      max-width: 60rem;
+    }
+  }
+}
+
+// FEATURES SECTION
+.section-features {
+  padding: 20rem 0;
+  background-image: linear-gradient(
+      to right,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(/img/nat-4.jpg);
+  background-size: cover;
+  transform: skewY(-7deg);
+  margin-top: -10rem;
+
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
+
+  &--content {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: flex-start;
+    height: fit-content;
+    max-width: 114rem;
+    transform: skewY(7deg);
+
+    & > div {
+      width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+    }
+
+    & > div:not(:last-child) {
+      margin-right: $gutter-horizontal;
+
+      @media screen and (max-width: 1080px) and (min-width: 900px) {
+        margin-right: 4rem;
+      }
+    }
+
+    @include flex-column;
+  }
+
+  // An alternative way of skewing the content back to its original position
+  // By selecting all all(*) the direct children of the features section
+  // & > * {
+  //   transform: skewY(7deg);
+  // }
+}
+
+// TOURS SECTION
+.section-tours {
+  background-color: $color-gray-light-1;
+  margin-top: -10rem;
+  padding: 25rem 0 15rem 0;
+
+  @include respond(tab-port) {
+    padding: 20rem 0 10rem 0;
+  }
+
+  &--content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 114rem;
+    margin: 0 auto;
+    height: fit-content;
+
+    & > div {
+      width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    }
+
+    & > div:not(:last-child) {
+      margin-right: $gutter-horizontal;
+
+      @media screen and (max-width: 1080px) and (min-width: 900px) {
+        margin-right: 4rem;
+      }
+    }
+
+    @include flex-column;
+  }
+}
+
+// STORIES SECTION
+.section-stories {
+  padding: 15rem;
+  background-color: transparent;
+  position: relative;
+
+  @include respond(tab-port) {
+    padding: 10rem;
+  }
+
+  @include respond(phone) {
+    padding: 4rem;
+  }
+
+  &--content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 114rem;
+    margin: 0 auto;
+    height: fit-content;
+
+    & > *:not(:last-child) {
+      margin-bottom: $gutter-vertical;
+    }
+  }
+}
+
+// BOOKING SECTION
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(
+    to right bottom,
+    $color-primary-light,
+    $color-primary-dark
+  );
+
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 114rem;
+    margin: 0 auto;
+    height: fit-content;
+
+    @include flex-column;
+  }
+}
+
+.book {
+  background-image: linear-gradient(
+      105deg,
+      rgba($color-white, 0.9) 50%,
+      transparent 50%
+    ),
+    url(/img/nat-10.jpg);
+  background-size: 100%;
+  border-radius: 3px;
+  width: 100%;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
+
+  @include respond(tab-land) {
+    background-image: linear-gradient(
+        105deg,
+        rgba($color-white, 0.9) 65%,
+        transparent 65%
+      ),
+      url(/img/nat-10.jpg);
+    background-size: cover;
+  }
+
+  @include respond(tab-port) {
+    background-image: linear-gradient(
+        to right,
+        rgba($color-white, 0.9) 0%,
+        rgba($color-white, 0.9) 100%
+      ),
+      url(/img/nat-10.jpg);
+  }
+
+  &__form {
+    width: 50%;
+    padding: 6rem;
+
+    @include respond(tab-land) {
+      width: 65%;
+    }
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+  }
+}
+
+// FOOTER SECTION!!
+.footer {
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 114rem;
+    margin: 0 auto;
+    height: fit-content;
+
+    & > div {
+      // width: calc((100% - #{$gutter-horizontal}) / 2);
+    }
+
+    & > div:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+
+    @include flex-column;
+  }
+}
